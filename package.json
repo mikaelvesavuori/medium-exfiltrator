@@ -1,0 +1,76 @@
+{
+  "name": "medium-exfiltrator",
+  "version": "1.0.0",
+  "description": "Helps you clean up exported Medium posts into a nicer format, ready for use on your own blog or for backup purposes.",
+  "author": "Mikael Vesavuori",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "keywords": [
+    "medium",
+    "posts",
+    "blog",
+    "archive",
+    "archival"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikaelvesavuori/medium-exfiltrator"
+  },
+  "bugs": {
+    "url": "https://github.com/mikaelvesavuori/medium-exfiltrator/issues"
+  },
+  "homepage": "https://github.com/mikaelvesavuori/medium-exfiltrator",
+  "files": [
+    "/dist",
+    "!/dist/**/*.map",
+    "!/tests"
+  ],
+  "scripts": {
+    "start": "npx ts-node src/test.ts",
+    "lint": "npx eslint \"./src/**/*.ts\" --quiet --fix",
+    "test": "npm run clean && npm run test:licenses && npm run test:types && npm run test:unit",
+    "test:types": "npx type-coverage --at-least 99 --strict --ignore-files \"tests/**/*.ts\" --ignore-files \"*.ts\" --ignore-files \"src/application/errors/*.ts\" --ignore-files \"testdata/*.ts\"",
+    "test:licenses": "npx license-compliance --direct --allow 'MIT;ISC;0BSD;BSD-2-Clause;BSD-3-Clause;Apache-2.0;Unlicense;CC0-1.0'",
+    "test:unit": "npx c8 -reporter=lcov ava",
+    "build": "npm run clean && npm run build:ncc",
+    "build:ncc": "npx ncc build src/index.ts --license licenses.txt",
+    "clean": "rm -rf lib && rm -rf __temp_base__ && rm -rf __temp_css__ && rm -rf __temp_footer__ && rm -rf __temp_local__ && rm -rf __temp_original__ && rm -rf output",
+    "package": "npm pack",
+    "prepublishOnly": "npm run build",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@ava/typescript": "4",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "5",
+    "@typescript-eslint/parser": "5",
+    "@vercel/ncc": "0",
+    "ava": "5",
+    "c8": "8",
+    "eslint-config-prettier": "8",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jsdoc": "latest",
+    "eslint-plugin-prettier": "4",
+    "eslint": "8",
+    "husky": "8",
+    "license-compliance": "latest",
+    "prettier": "2",
+    "ts-node": "latest",
+    "type-coverage": "2",
+    "typescript": "5"
+  },
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "src/": "dist/"
+      },
+      "compile": false
+    },
+    "files": [
+      "tests/**/*.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}

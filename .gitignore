@@ -1,0 +1,24 @@
+# Files
+.env
+.dccache
+.DS_Store
+
+# Folders
+__temp_*__
+content/
+output/
+test/
+node_modules/
+dist/
+lib/
+build/
+docs/
+coverage/
+jest-coverage/
+.webpack/
+.esbuild/
+.serverless/
+
+# Diagrams
+**/*.bkp
+**/*.bak
