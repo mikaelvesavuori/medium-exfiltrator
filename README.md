@@ -15,6 +15,10 @@ Features:
   - Zero dependencies
   - High test coverage
 
+Here's a zoomed-out example of how a post could look:
+
+![Zoomed-out example of post after processing with Medium Exfiltrator](./example.png)
+
 ## Prerequisites and good-to-know
 
 You need to first [export your Medium data, including posts](https://help.medium.com/hc/en-us/articles/115004745787-Export-your-account-data), which is a prerequisite for this tool to do anything.
