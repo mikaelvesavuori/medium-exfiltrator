@@ -29,7 +29,15 @@ Note that _it will not_ retrieve any articles—it will only reformat the posts 
 
 ## Installation
 
-Run `npm install`.
+### As dependency
+
+Run `npm install medium-exfiltrator --save-dev`. See usage example below.
+
+### As source
+
+Git clone this repository.
+
+Run `npm install` to install.
 
 ## Usage
 
