@@ -11,7 +11,8 @@ const config: MediumExfiltratorConfiguration = {
   removeFooter: true,
   useOriginalHtml: false,
   useLocalImages: true,
-  includeDrafts: true
+  includeDrafts: false,
+  stripRandom: true
 };
 
 const exfil = new MediumExfiltrator(config);

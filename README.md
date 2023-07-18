@@ -10,6 +10,7 @@ Features:
   - Comes with improved, mobile-optimized CSS...
   - ...or replace the styling with your own CSS!
   - Remove all extraneous tag attributes, such as `data-`, `name`, IDs, and classes
+  - Strip away the 12-character random string from the end of your HTML file name
   - Strip away the footer
   - Include or exclude drafts
 - Get all used images and use local image URLs instead of Medium's URLs
@@ -62,6 +63,7 @@ const config: MediumExfiltratorConfiguration = {
   useOriginalHtml: false,  // Default: false
   useLocalImages: true,    // Default: false
   includeDrafts: false,    // Default: false
+  stripRandom: true        // Default: false
 };
 
 // Create instance

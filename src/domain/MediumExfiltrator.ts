@@ -21,6 +21,7 @@ import { readFile } from '../utils/readFile';
 import { writeFile } from '../utils/writeFile';
 
 import { css } from '../config';
+import { getFilePath } from '../utils/getFilePath';
 
 /**
  * @description Medium Exfiltrator helps you clean up
@@ -28,13 +29,14 @@ import { css } from '../config';
  * for use on your own blog or for backup purposes.
  */
 export class MediumExfiltrator {
-  css: string;
-  contentDirectory: string;
-  outputDirectory: string;
-  removeFooter: boolean;
-  useOriginalHtml: boolean;
-  useLocalImages: boolean;
-  includeDrafts: boolean;
+  private css = '';
+  private contentDirectory = '';
+  private outputDirectory = '';
+  private removeFooter = false;
+  private useOriginalHtml = false;
+  private useLocalImages = false;
+  private includeDrafts = false;
+  private stripRandom = false;
 
   constructor(config: MediumExfiltratorConfiguration) {
     if (!config || !config.contentDirectory || !config.outputDirectory)
@@ -42,6 +44,10 @@ export class MediumExfiltrator {
         'Missing one or more required input parameters: "contentDirectory", "outputDirectory"!'
       );
 
+    this.init(config);
+  }
+
+  private init(config: MediumExfiltratorConfiguration) {
     this.contentDirectory = config.contentDirectory;
     this.outputDirectory = config.outputDirectory;
     this.css = config.css || css;
@@ -49,6 +55,7 @@ export class MediumExfiltrator {
     this.useOriginalHtml = config.useOriginalHtml || false;
     this.useLocalImages = config.useLocalImages || false;
     this.includeDrafts = config.includeDrafts || false;
+    this.stripRandom = config.stripRandom || false;
   }
 
   /**
@@ -68,7 +75,8 @@ export class MediumExfiltrator {
       const fileContents = readFile(`${this.contentDirectory}/${filePath}`);
       const imagePaths = getImagePaths(fileContents);
       imageUrls.push(...imagePaths);
-      this.writeCleanedPosts(fileContents, filePath);
+      const fixedFilePath = getFilePath(filePath, this.stripRandom);
+      this.writeCleanedPosts(fileContents, fixedFilePath);
     });
 
     // Images

@@ -6,4 +6,5 @@ export type MediumExfiltratorConfiguration = {
   useOriginalHtml?: boolean;
   useLocalImages?: boolean;
   includeDrafts?: boolean;
+  stripRandom?: boolean;
 };

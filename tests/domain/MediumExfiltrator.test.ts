@@ -21,7 +21,7 @@ const fileHasContents = (path: string, matchingString: string) => {
 
 const tempTestingDir = (name: string) => `__temp_${name}__`;
 const htmlPath = (dir: string, file?: string) =>
-  file ? `${dir}/${file}` : `${dir}/example.html`;
+  file ? `${dir}/${file}` : `${dir}/example-1234abcd7890.html`;
 
 const baseConfig = {
   contentDirectory: 'testdata'
@@ -148,4 +148,22 @@ test('It should work with draft documents', async (t) => {
   const draftExists = exists(htmlPath(testDir, 'draft_example.html'));
 
   t.deepEqual(htmlExists && draftExists, true);
+});
+
+test('It should work with stripped random IDs on files', async (t) => {
+  const testDir = tempTestingDir('random');
+  deleteDirectory(testDir);
+
+  const config = {
+    ...baseConfig,
+    outputDirectory: testDir,
+    stripRandom: true
+  };
+
+  const exfil = new MediumExfiltrator(config);
+  await exfil.exfiltrate();
+
+  const htmlExists = exists(htmlPath(testDir, 'example.html'));
+
+  t.deepEqual(htmlExists, true);
 });

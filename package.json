@@ -1,6 +1,6 @@
 {
   "name": "medium-exfiltrator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Helps you clean up exported Medium posts into a nicer format, ready for use on your own blog or for backup purposes.",
   "author": "Mikael Vesavuori",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "test:unit": "npx c8 -reporter=lcov ava",
     "build": "npm run clean && npm run build:ncc",
     "build:ncc": "npx ncc build src/index.ts --license licenses.txt",
-    "clean": "rm -rf lib && rm -rf __temp-draft__ && rm -rf __temp_base__ && rm -rf __temp_css__ && rm -rf __temp_footer__ && rm -rf __temp_local__ && rm -rf __temp_original__ && rm -rf output",
+    "clean": "rm -rf __test_clean__ && rm -rf lib && rm -rf __temp_draft__ && rm -rf __temp_base__ && rm -rf __temp_css__ && rm -rf __temp_footer__ && rm -rf __temp_local__ && rm -rf __temp_original__ && rm -rf output",
     "package": "npm pack",
     "prepublishOnly": "npm run build",
     "prepare": "husky install"
