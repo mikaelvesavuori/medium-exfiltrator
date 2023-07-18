@@ -12,6 +12,7 @@ section[data-field=description] {
 test('It should delete data fields', (t) => {
   const expected = `
 header,
+section,
 section {
   display: none;
 }`;
