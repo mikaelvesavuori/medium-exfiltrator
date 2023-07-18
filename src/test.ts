@@ -9,7 +9,9 @@ const config: MediumExfiltratorConfiguration = {
   contentDirectory: 'test',
   outputDirectory: 'output',
   removeFooter: true,
-  useLocalImages: true
+  useOriginalHtml: false,
+  useLocalImages: true,
+  includeDrafts: true
 };
 
 const exfil = new MediumExfiltrator(config);

@@ -7,9 +7,11 @@ Whether you want to keep backups, maintain your blog on the side of Medium, or e
 Features:
 
 - Reformat posts:
-  - Replace styling with your own CSS
+  - Comes with improved, mobile-optimized CSS...
+  - ...or replace the styling with your own CSS!
   - Remove all extraneous tag attributes, such as `data-`, `name`, IDs, and classes
   - Strip away the footer
+  - Include or exclude drafts
 - Get all used images and use local image URLs instead of Medium's URLs
 - Also:
   - Zero dependencies
@@ -48,9 +50,10 @@ const config: MediumExfiltratorConfiguration = {
 
   // Optional
   css,
-  removeFooter: true,     // Default: false
-  useOriginalHtml: false, // Default: false
-  useLocalImages: true    // Default: false
+  removeFooter: true,      // Default: false
+  useOriginalHtml: false,  // Default: false
+  useLocalImages: true,    // Default: false
+  includeDrafts: false,    // Default: false
 };
 
 // Create instance

@@ -5,4 +5,5 @@ export type MediumExfiltratorConfiguration = {
   removeFooter?: boolean;
   useOriginalHtml?: boolean;
   useLocalImages?: boolean;
+  includeDrafts?: boolean;
 };

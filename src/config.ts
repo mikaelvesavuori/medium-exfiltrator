@@ -7,6 +7,11 @@ html, body {
   padding: 0;
   font-size: 16px;
 }
+article {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -25,12 +30,8 @@ h3 {
   margin: 0.75rem 0 1.5rem 0;
   color: #333;
 }
-header {
-  width: 640px;
-  margin: auto;
-}
+header,
 section {
-  width: 640px;
   margin: auto;
 }
 section p {
@@ -42,7 +43,6 @@ section p {
 section img,
 section iframe {
   width: 100%;
-  max-width: 640px;
 }
 footer {
   padding: 0 1.25rem;
@@ -74,4 +74,12 @@ header,
 section[data-field=subtitle],
 section[data-field=description] {
   display: none;
-}`;
+}
+@media screen and (max-width: 700px) {
+  article {
+    padding: 0 1rem;
+    max-width: 100%;
+    width: auto;
+  }
+}
+`;

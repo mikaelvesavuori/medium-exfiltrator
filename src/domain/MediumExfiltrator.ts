@@ -31,9 +31,10 @@ export class MediumExfiltrator {
   css: string;
   contentDirectory: string;
   outputDirectory: string;
-  removeFooter = false;
-  useOriginalHtml = false;
-  useLocalImages = false;
+  removeFooter: boolean;
+  useOriginalHtml: boolean;
+  useLocalImages: boolean;
+  includeDrafts: boolean;
 
   constructor(config: MediumExfiltratorConfiguration) {
     if (!config || !config.contentDirectory || !config.outputDirectory)
@@ -44,9 +45,10 @@ export class MediumExfiltrator {
     this.contentDirectory = config.contentDirectory;
     this.outputDirectory = config.outputDirectory;
     this.css = config.css || css;
-    this.removeFooter = config.removeFooter || this.removeFooter;
-    this.useOriginalHtml = config.useOriginalHtml || this.useOriginalHtml;
-    this.useLocalImages = config.useLocalImages || this.useLocalImages;
+    this.removeFooter = config.removeFooter || false;
+    this.useOriginalHtml = config.useOriginalHtml || false;
+    this.useLocalImages = config.useLocalImages || false;
+    this.includeDrafts = config.includeDrafts || false;
   }
 
   /**
@@ -82,7 +84,7 @@ export class MediumExfiltrator {
 
   private getAllFiles() {
     const files = readDirectory(this.contentDirectory);
-    return filterFiles(files);
+    return filterFiles(files, this.includeDrafts);
   }
 
   private writeCleanedPosts(fileContents: string, filePath: string) {

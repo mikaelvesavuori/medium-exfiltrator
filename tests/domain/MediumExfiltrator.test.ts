@@ -20,7 +20,8 @@ const fileHasContents = (path: string, matchingString: string) => {
 };
 
 const tempTestingDir = (name: string) => `__temp_${name}__`;
-const htmlPath = (dir: string) => `${dir}/example.html`;
+const htmlPath = (dir: string, file?: string) =>
+  file ? `${dir}/${file}` : `${dir}/example.html`;
 
 const baseConfig = {
   contentDirectory: 'testdata'
@@ -124,8 +125,27 @@ test('It should work with original HTML', async (t) => {
   const htmlExists = exists(htmlPath(testDir));
   const hasOriginalHtml = fileHasContents(
     htmlPath(testDir),
-    '<section name="049e" class="section section--body section--first">'
+    '<section name="d172" class="section section--body section--first">'
   );
 
   t.deepEqual(htmlExists && hasOriginalHtml, true);
+});
+
+test('It should work with draft documents', async (t) => {
+  const testDir = tempTestingDir('draft');
+  deleteDirectory(testDir);
+
+  const config = {
+    ...baseConfig,
+    outputDirectory: testDir,
+    includeDrafts: true
+  };
+
+  const exfil = new MediumExfiltrator(config);
+  await exfil.exfiltrate();
+
+  const htmlExists = exists(htmlPath(testDir));
+  const draftExists = exists(htmlPath(testDir, 'draft_example.html'));
+
+  t.deepEqual(htmlExists && draftExists, true);
 });
