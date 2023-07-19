@@ -12,8 +12,10 @@ import { deleteWhitespace } from '../replacers/deleteWhitespace';
 import { replaceOnlineMediaWithLocalReference } from '../replacers/replaceOnlineMediaWithLocalReference';
 import { updateStyle } from '../replacers/updateStyle';
 
+import { addMobileMeta } from '../utils/addMobileMeta';
 import { download } from '../utils/download';
 import { filterFiles } from '../utils/filterFiles';
+import { getFilePath } from '../utils/getFilePath';
 import { getImagePaths } from '../utils/getImagePaths';
 import { makeDirectory } from '../utils/makeDirectory';
 import { readDirectory } from '../utils/readDirectory';
@@ -21,7 +23,6 @@ import { readFile } from '../utils/readFile';
 import { writeFile } from '../utils/writeFile';
 
 import { css } from '../config';
-import { getFilePath } from '../utils/getFilePath';
 
 /**
  * @description Medium Exfiltrator helps you clean up
@@ -116,6 +117,7 @@ export class MediumExfiltrator {
     html = deleteDataTags(html);
     html = closeTags(html);
     html = deleteWhitespace(html);
+    html = addMobileMeta(html);
     return html;
   }
 

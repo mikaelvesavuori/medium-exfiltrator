@@ -1,6 +1,6 @@
 {
   "name": "medium-exfiltrator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Helps you clean up exported Medium posts into a nicer format, ready for use on your own blog or for backup purposes.",
   "author": "Mikael Vesavuori",
   "license": "MIT",
