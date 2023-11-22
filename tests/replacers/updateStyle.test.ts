@@ -45,6 +45,22 @@ section p {
 section img {
   max-width: 640px;
 }
+pre {
+  background-color: #1e1e2d;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: auto;
+}
+pre > span {
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: white;
+}
+span {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+    'DejaVu Sans Mono', monospace;
+  white-space: pre-wrap;
+}
 footer {
   padding: 0 20px;
   margin: 50px 0;
