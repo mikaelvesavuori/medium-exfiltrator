@@ -46,19 +46,20 @@ section iframe {
 }
 pre {
   background-color: #1e1e2d;
+  color: white;
   padding: 1rem;
   border-radius: 0.5rem;
   width: auto;
 }
-pre > span {
-  font-weight: normal;
-  font-size: 0.75rem;
-  color: white;
-}
-span {
+pre,
+pre > span,
+pre > span > span {
   font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
     'DejaVu Sans Mono', monospace;
   white-space: pre-wrap;
+  line-height: 1.5;
+  font-weight: normal;
+  font-size: 0.8rem;
 }
 footer {
   padding: 0 1.25rem;
